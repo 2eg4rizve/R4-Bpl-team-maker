@@ -42,6 +42,17 @@ function App() {
 
   }
 
+  const handleDelete =(member)=>{
+
+    const result = cartsMember.filter(item => item.id!==member.id)
+    
+    setTotalCost(totalCost-member.salary);
+    setRemaining(remaining+member.salary);
+
+    setCartsMember(result);
+
+  }
+
 
 
   return (
@@ -57,6 +68,7 @@ function App() {
           cartsMember={cartsMember}
           totalCost={totalCost}
           remaining={remaining}
+          handleDelete={handleDelete}
         ></Carts>
 
       </div>

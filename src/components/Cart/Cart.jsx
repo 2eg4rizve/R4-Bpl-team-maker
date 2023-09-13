@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
 
-const Cart = ({member}) => {
+const Cart = ({member,handleDelete}) => {
     return (
-        <div>
+        <div className="flex gap-4  ">
 
-            <h1>{member.name}</h1>
+            <h1 className="">{member.name}</h1>
+            <p>{member.salary}</p>
+            <button className="btn btn-primary mb-[20px]" onClick={() => handleDelete(member)}>Delete</button>
+            
             
         </div>
     );
