@@ -9,6 +9,8 @@ function App() {
 
   const [members, setMembers] = useState([]);
   const [cartsMember, setCartsMember] = useState([]);
+  const [remaining, setRemaining] = useState(20000);
+  const [totalCost, setTotalCost] = useState(0);
 
   useEffect(() => {
     fetch('data.json')
@@ -17,10 +19,27 @@ function App() {
 
   }, [])
 
-  const handleAdd =(member) =>{
+  const handleAdd = (member) => {
     console.log("Handle Add Click")
-    const newMember =[...cartsMember,member]
-    setCartsMember(newMember);
+
+    const find = cartsMember.find(item => item.id === member.id)
+
+    if (!find) {
+      if((remaining-member.salary)<0)
+      {
+         return alert("Do Not Enough Money ")
+      }
+
+      const newMember = [...cartsMember, member]
+      setCartsMember(newMember);
+      setTotalCost(totalCost+member.salary)
+      setRemaining(remaining-member.salary)
+      
+    }
+    else {
+      alert("Already Added");
+    }
+
   }
 
 
@@ -31,11 +50,13 @@ function App() {
         <Members
           members={members}
           handleAdd={handleAdd}
-          
+
         ></Members>
         <Carts
-        className='bg-green-200'
+          className='bg-green-200'
           cartsMember={cartsMember}
+          totalCost={totalCost}
+          remaining={remaining}
         ></Carts>
 
       </div>

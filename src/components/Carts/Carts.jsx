@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 
 import Cart from "../Cart/Cart";
-import Member from "../Member/Member";
 
 
-const Carts = ({ cartsMember }) => {
+
+const Carts = ({ cartsMember ,totalCost ,remaining}) => {
 
     return (
         <div className="w-[300px] bg-green-200 text-center">
@@ -23,6 +23,9 @@ const Carts = ({ cartsMember }) => {
                 )
 
             }
+
+            <h1 className="mt-[50px] font-bold">Total Cost : {totalCost}</h1>
+            <h1 className="mt-[10px] font-bold">Remaining : {remaining}</h1>
 
 
 
